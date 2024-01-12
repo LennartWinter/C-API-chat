@@ -31,7 +31,7 @@ namespace VelocityCs
                         if (previousSenderId != message.user_id)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("\n\n" + message.username);
+                            Console.WriteLine("\n" + message.username);
                         }
                         previousSenderId = message.user_id;
                         Console.ForegroundColor = ConsoleColor.Gray;
@@ -79,9 +79,6 @@ namespace VelocityCs
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Velocity Token: ");
-            string Token = Console.ReadLine();
-            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("$$\\    $$\\ $$$$$$$$\\ $$\\       $$$$$$\\   $$$$$$\\  $$$$$$\\ $$$$$$$$\\ $$\\     $$\\ \n$$ |   $$ |$$  _____|$$ |     $$  __$$\\ $$  __$$\\ \\_$$  _|\\__$$  __|\\$$\\   $$  |\n$$ |   $$ |$$ |      $$ |     $$ /  $$ |$$ /  \\__|  $$ |     $$ |    \\$$\\ $$  / \n\\$$\\  $$  |$$$$$\\    $$ |     $$ |  $$ |$$ |        $$ |     $$ |     \\$$$$  /  \n \\$$\\$$  / $$  __|   $$ |     $$ |  $$ |$$ |        $$ |     $$ |      \\$$  /   \n  \\$$$  /  $$ |      $$ |     $$ |  $$ |$$ |  $$\\   $$ |     $$ |       $$ |    \n   \\$  /   $$$$$$$$\\ $$$$$$$$\\ $$$$$$  |\\$$$$$$  |$$$$$$\\    $$ |       $$ |    \n    \\_/    \\________|\\________|\\______/  \\______/ \\______|   \\__|       \\__|    ");
             Console.ResetColor();
@@ -89,9 +86,9 @@ namespace VelocityCs
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(">help ");
             Console.ResetColor();
-            Console.Write("to get started.");
+            Console.Write("to get started.\n");
             AuthData data = new AuthData();
-            data.token = Token;
+            data.token = File.ReadAllText("token.secret");;
             ShowMessagesAsync(data);
             AwaitMessageAsync(data);
         }
