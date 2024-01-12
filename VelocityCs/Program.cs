@@ -15,7 +15,12 @@ namespace VelocityCs
             data.token = Token;
             string json = JsonConvert.SerializeObject(data);
             string response = Helpers.Post("https://nont123.nl/api/messages", json, "application/json");
-            Console.WriteLine(response);
+            List<Message> messages = JsonConvert.DeserializeObject<List<Message>>(response);
+            messages.Reverse();
+            foreach (Message message in messages)
+            {
+                Console.WriteLine(message.username + ": " + message.message);
+            }
             Console.ReadLine();
         }
     }
