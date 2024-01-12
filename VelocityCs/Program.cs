@@ -7,8 +7,15 @@ namespace VelocityCs
 {
     internal class Program
     {
-        public static async Task ShowMessagesAsync(string json)
+        public static void DeleteInput()
         {
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, Console.CursorTop);
+        }
+        public static async Task ShowMessagesAsync(AuthData data)
+        {
+            string json = JsonConvert.SerializeObject(data);
             List<Message> oldmessages = new List<Message>();
             while (true)
             {
@@ -28,15 +35,27 @@ namespace VelocityCs
                 await Task.Delay(300);
             }
         }
+
+        public static async Task AwaitMessageAsync(AuthData data)
+        {
+            while (true)
+            {
+                string msg = Console.ReadLine();
+                DeleteInput();
+                data.message = msg;
+                string json = JsonConvert.SerializeObject(data);
+                Helpers.Post("https://nont123.nl/api/messages/create", json, "application/json");
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Velocity Token: ");
             string Token = Console.ReadLine();
+            DeleteInput();
             AuthData data = new AuthData();
             data.token = Token;
-            string json = JsonConvert.SerializeObject(data);
-            ShowMessagesAsync(json);
-            Console.ReadLine();
+            ShowMessagesAsync(data);
+            AwaitMessageAsync(data);
         }
     }
 }
