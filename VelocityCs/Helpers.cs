@@ -6,7 +6,7 @@ namespace VelocityCs;
 
 public class Helpers
 {
-    public string Get(string uri)
+    public static string Get(string uri)
     {
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
         request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
@@ -19,7 +19,7 @@ public class Helpers
         }
     }
 
-    public string Post(string uri, string data, string contentType, string method = "POST")
+    public static string Post(string uri, string data, string contentType, string method = "POST")
     {
         byte[] dataBytes = Encoding.UTF8.GetBytes(data);
 
