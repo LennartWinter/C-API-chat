@@ -79,6 +79,8 @@ namespace VelocityCs
         }
         static void Main(string[] args)
         {
+            Console.WriteLine("Your token:");
+            string Token = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("$$\\    $$\\ $$$$$$$$\\ $$\\       $$$$$$\\   $$$$$$\\  $$$$$$\\ $$$$$$$$\\ $$\\     $$\\ \n$$ |   $$ |$$  _____|$$ |     $$  __$$\\ $$  __$$\\ \\_$$  _|\\__$$  __|\\$$\\   $$  |\n$$ |   $$ |$$ |      $$ |     $$ /  $$ |$$ /  \\__|  $$ |     $$ |    \\$$\\ $$  / \n\\$$\\  $$  |$$$$$\\    $$ |     $$ |  $$ |$$ |        $$ |     $$ |     \\$$$$  /  \n \\$$\\$$  / $$  __|   $$ |     $$ |  $$ |$$ |        $$ |     $$ |      \\$$  /   \n  \\$$$  /  $$ |      $$ |     $$ |  $$ |$$ |  $$\\   $$ |     $$ |       $$ |    \n   \\$  /   $$$$$$$$\\ $$$$$$$$\\ $$$$$$  |\\$$$$$$  |$$$$$$\\    $$ |       $$ |    \n    \\_/    \\________|\\________|\\______/  \\______/ \\______|   \\__|       \\__|    ");
             Console.ResetColor();
@@ -88,7 +90,7 @@ namespace VelocityCs
             Console.ResetColor();
             Console.Write("to get started.\n");
             AuthData data = new AuthData();
-            data.token = File.ReadAllText("token.secret");;
+            data.token = Token;
             ShowMessagesAsync(data);
             AwaitMessageAsync(data);
         }
