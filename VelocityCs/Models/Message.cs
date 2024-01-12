@@ -10,5 +10,5 @@ public class Message
     public string? attachment_url { get; set; }
     public int? reply_id { get; set; }
     public string username { get; set; }
-    public string avatar_url { get; set; }
+    public string? avatar_url { get; set; }
 }
